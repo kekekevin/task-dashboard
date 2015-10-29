@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.2.3
 env:
-  - SECRET_KEY_BASE="$(bundle exec rake secret)"
+  - SECRET_KEY_BASE="9d48e8603d4c7c44746327588c3d7e4c5b81f26e2e1b0c69e16422399f49963152e6de973538ca8d6ab42e9564b170ab533d85f19252d1337b7b50f803580693"
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
   - bin/rspec
