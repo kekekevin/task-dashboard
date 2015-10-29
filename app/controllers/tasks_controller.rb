@@ -18,4 +18,5 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:summary, :description, :due_date, :swim_lane_id)
   end
+
 end
