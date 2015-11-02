@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TasksController, type: :controller do
+RSpec.describe Api::TasksController, type: :controller do
 
   let(:task) { { summary: "summary", description: "description", due_date: Time.new(2015, 10, 31) } }
 

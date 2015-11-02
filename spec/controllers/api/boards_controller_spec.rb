@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BoardsController, type: :controller do
+RSpec.describe Api::BoardsController, type: :controller do
 
   let(:board) { {name: "board", time_zone: "America/Chicago", description: "description"} }
 

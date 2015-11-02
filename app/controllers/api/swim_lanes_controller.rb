@@ -1,4 +1,4 @@
-class SwimLanesController < ApplicationController
+class Api::SwimLanesController < ApplicationController
 
   def show
     @swim_lane = SwimLane.find(params[:id])

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SwimLanesController, type: :controller do
+RSpec.describe Api::SwimLanesController, type: :controller do
 
   describe "GET #show" do
 

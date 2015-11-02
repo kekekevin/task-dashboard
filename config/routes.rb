@@ -3,11 +3,14 @@ Rails.application.routes.draw do
 
   get 'welcome' => 'welcome#index'
 
-  resources :tasks, only: [:create, :update, :destroy, :show]
+  namespace :api do
+    resources :tasks, only: [:create, :update, :destroy, :show]
 
-  resources :swim_lanes, only: [:show]
+    resources :swim_lanes, only: [:show]
 
-  resources :boards
+    resources :boards
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
