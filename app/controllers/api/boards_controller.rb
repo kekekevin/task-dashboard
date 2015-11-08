@@ -12,4 +12,8 @@ class Api::BoardsController < ApplicationController
     render json: @board
   end
 
+  def create
+
+  end
+
 end
