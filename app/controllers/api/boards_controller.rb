@@ -13,7 +13,14 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
+    @board = Board.create(board_params)
 
+    render json: @board
   end
 
+  private
+
+  def board_params
+    params.require(:board).permit(:name, :description, :time_zone)
+  end
 end
