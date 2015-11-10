@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::BoardsController, type: :controller do
 
-  let(:board) { {name: "board", time_zone: "Central Time (US & Canada)", description: "description"} }
+  let(:board) { { name: "board", time_zone: "Central Time (US & Canada)", description: "description" } }
 
   describe "GET #index" do
     it "should retrieve all boards" do

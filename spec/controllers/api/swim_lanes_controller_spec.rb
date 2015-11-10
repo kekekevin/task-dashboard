@@ -5,7 +5,7 @@ RSpec.describe Api::SwimLanesController, type: :controller do
   describe "GET #show" do
 
     it "should return the specified swim lane" do
-      swim_lane = SwimLane.create({name: "swim lane", days: 7, order: 1})
+      swim_lane = SwimLane.create(name: "swim lane", days: 7, order: 1)
 
       get :show, id: swim_lane.id
 

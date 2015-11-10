@@ -23,4 +23,5 @@ class Api::BoardsController < ApplicationController
   def board_params
     params.require(:board).permit(:name, :description, :time_zone)
   end
+
 end
