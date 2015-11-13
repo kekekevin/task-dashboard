@@ -13,7 +13,8 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
-    @board = Board.create(board_params)
+    @board = Board.create(board_params).with_default_lanes
+    @board.save
 
     render json: @board
   end

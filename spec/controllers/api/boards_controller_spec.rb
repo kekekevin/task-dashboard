@@ -10,7 +10,7 @@ RSpec.describe Api::BoardsController, type: :controller do
 
       get :index
 
-      expect(response.body).to eq '{"boards":[{"id":1,"name":"board","time_zone":"Central Time (US \\u0026 Canada)","description":"description","swim_lane_ids":[1,2,3,4]}],"swim_lanes":[{"id":1,"name":"Today","days":1,"order":1,"task_ids":[]},{"id":2,"name":"Tomorrow","days":2,"order":2,"task_ids":[]},{"id":3,"name":"One Week","days":7,"order":3,"task_ids":[]},{"id":4,"name":"One Month","days":30,"order":4,"task_ids":[]}]}'
+      expect(response.body).to eq '{"boards":[{"id":1,"name":"board","time_zone":"Central Time (US \\u0026 Canada)","description":"description","swim_lane_ids":[]}]}'
     end
   end
 
@@ -20,7 +20,7 @@ RSpec.describe Api::BoardsController, type: :controller do
 
       get :show, id: existing_board.id
 
-      expect(response.body).to eq '{"board":{"id":1,"name":"board","time_zone":"Central Time (US \\u0026 Canada)","description":"description","swim_lane_ids":[1,2,3,4]},"swim_lanes":[{"id":1,"name":"Today","days":1,"order":1,"task_ids":[]},{"id":2,"name":"Tomorrow","days":2,"order":2,"task_ids":[]},{"id":3,"name":"One Week","days":7,"order":3,"task_ids":[]},{"id":4,"name":"One Month","days":30,"order":4,"task_ids":[]}]}'
+      expect(response.body).to eq '{"board":{"id":1,"name":"board","time_zone":"Central Time (US \\u0026 Canada)","description":"description","swim_lane_ids":[]},"swim_lanes":[]}'
     end
   end
 
@@ -28,10 +28,10 @@ RSpec.describe Api::BoardsController, type: :controller do
     it "should create a new board" do
       expect {
         post :create, board: board, format: :json
-      }.to change{ Board.count }.by 1
+      }.to change { Board.count }.by 1
     end
 
-    it "should return the created board" do
+    it "should return the created board with default lanes" do
       post :create, board: board, format: :json
 
       expect(response.body).to eq '{"board":{"id":1,"name":"board","time_zone":"Central Time (US \\u0026 Canada)","description":"description","swim_lane_ids":[1,2,3,4]},"swim_lanes":[{"id":1,"name":"Today","days":1,"order":1,"task_ids":[]},{"id":2,"name":"Tomorrow","days":2,"order":2,"task_ids":[]},{"id":3,"name":"One Week","days":7,"order":3,"task_ids":[]},{"id":4,"name":"One Month","days":30,"order":4,"task_ids":[]}]}'
