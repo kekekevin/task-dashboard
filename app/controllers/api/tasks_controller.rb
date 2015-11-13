@@ -2,6 +2,7 @@ class Api::TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.board.assign @task
     @task.save
 
     render json: @task
