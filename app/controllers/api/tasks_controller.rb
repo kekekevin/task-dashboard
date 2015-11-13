@@ -17,7 +17,7 @@ class Api::TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:summary, :description, :due_date, :board_id)
+    params.require(:task).permit(:summary, :description, :due_date, :board_id, :swim_lane_id)
   end
 
 end
