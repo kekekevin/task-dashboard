@@ -14,6 +14,12 @@ class Api::TasksController < ApplicationController
     render json: @task
   end
 
+  def update
+    @task = Task.update(params[:id], task_params)
+
+    render json: @task
+  end
+
   private
 
   def task_params
