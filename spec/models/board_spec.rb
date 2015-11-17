@@ -10,25 +10,25 @@ RSpec.describe Board, type: :model do
     end
 
     describe "today's swim lane" do
-      subject { board.swim_lanes.find { |lane| lane.days == 1 } }
+      subject { board.swim_lanes.find { |lane| lane.days == 0 } }
 
       it { is_expected.to have_attributes(name: 'Today', order: 1) }
     end
 
     describe "tomorrow's swim lane" do
-      subject { board.swim_lanes.find { |lane| lane.days == 2 } }
+      subject { board.swim_lanes.find { |lane| lane.days == 1 } }
 
       it { is_expected.to have_attributes(name: 'Tomorrow', order: 2) }
     end
 
     describe "one week's swim lane" do
-      subject { board.swim_lanes.find { |lane| lane.days == 7 } }
+      subject { board.swim_lanes.find { |lane| lane.days == 6 } }
 
       it { is_expected.to have_attributes(name: 'One Week', order: 3) }
     end
 
     describe "one month's swim lane" do
-      subject { board.swim_lanes.find { |lane| lane.days == 30 } }
+      subject { board.swim_lanes.find { |lane| lane.days == 29 } }
 
       it { is_expected.to have_attributes(name: 'One Month', order: 4) }
     end
