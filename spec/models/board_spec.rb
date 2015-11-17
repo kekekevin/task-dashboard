@@ -44,7 +44,7 @@ RSpec.describe Board, type: :model do
     let(:board) { Board.create(swim_lanes: [tomorrow, today, one_week]) }
 
     context "with a task with due date of today" do
-      let(:task) { Task.new(board: board, due_date: Time.now) }
+      let(:task) { Task.new(board: board, due_date: Time.now.to_date) }
 
       it "should get assigned the swim lane today" do
         expect { board.assign task }.to change { today.tasks.size }.by 1
@@ -52,7 +52,7 @@ RSpec.describe Board, type: :model do
     end
 
     context "with a task with due date of tomorrow" do
-      let(:task) { Task.create(board: board, due_date: Time.now + 2.days) }
+      let(:task) { Task.create(board: board, due_date: Time.now.to_date + 2.days) }
 
       it "should get assigned the swim lane tomorrow" do
         expect { board.assign task }.to change { tomorrow.tasks.size }.by 1
@@ -60,7 +60,7 @@ RSpec.describe Board, type: :model do
     end
 
     context "with a task with due date between tomorrow and a week" do
-      let(:task) { Task.create(board: board, due_date: Time.now + 5.days) }
+      let(:task) { Task.create(board: board, due_date: Time.now.to_date + 5.days) }
 
       it "should get assigned the swim lane one week" do
         expect { board.assign task }.to change { one_week.tasks.size }.by 1
@@ -68,7 +68,7 @@ RSpec.describe Board, type: :model do
     end
     
     context "with a task with due date greater than all swim lanes" do
-      let(:task) { Task.create(board: board, due_date: Time.now + 30.days) }
+      let(:task) { Task.create(board: board, due_date: Time.now.to_date + 30.days) }
 
       it "should get assigned the last swim lane " do
         expect { board.assign task }.to change { one_week.tasks.size }.by 1

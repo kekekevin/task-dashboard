@@ -12,7 +12,7 @@ class Board < ActiveRecord::Base
   end
 
   def assign(task)
-    lane = swim_lanes.by_days.find { |l| task.due_date < Time.now + l.days.days }
+    lane = swim_lanes.by_days.find { |l| task.due_date <= Time.now.to_date + l.days.days }
     lane ||= swim_lanes.by_days.last
     lane.tasks << task
   end

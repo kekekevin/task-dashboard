@@ -16,6 +16,8 @@ class Api::TasksController < ApplicationController
 
   def update
     @task = Task.update(params[:id], task_params)
+    @task.due_date = @task.swim_lane.date
+    @task.save
 
     render json: @task
   end

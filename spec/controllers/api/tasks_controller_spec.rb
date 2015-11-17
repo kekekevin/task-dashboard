@@ -33,12 +33,12 @@ RSpec.describe Api::TasksController, type: :controller do
   describe 'PUT #update' do
     let(:swim_lane) { SwimLane.create(days: 2) }
 
-    pending 'adjusts the due_date' do
+    it 'adjusts the due_date' do
       task[:swim_lane_id] = swim_lane.id
       existing_task = Task.create(task)
       put :update, id: existing_task.id, task: task, format: :json
 
-      expect(assigns(:task).due_date).to eq Time.now + 2.days
+      expect(assigns(:task).due_date).to eq Time.now.to_date + 2.days
     end
   end
 

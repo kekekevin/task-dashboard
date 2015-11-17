@@ -3,4 +3,8 @@ class SwimLane < ActiveRecord::Base
   has_many :tasks
 
   scope :by_days, -> { order(days: :asc) }
+
+  def date
+    Time.now.to_date + days.days
+  end
 end

@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SwimLane, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#date' do
+    it 'should return the date plus days' do
+      expect(SwimLane.new(days: 3).date).to eq Time.now.to_date + 3.days
+    end    
+  end
 end
+
