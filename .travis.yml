@@ -1,8 +1,16 @@
 language: ruby
 rvm:
-  - 2.2.3
+- 2.2.3
 before_script:
-  - cp config/secrets.yml.travis config/secrets.yml
+- cp config/secrets.yml.travis config/secrets.yml
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
-  - bin/rspec
+- RAILS_ENV=test bundle exec rake --trace db:migrate test
+- bin/rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: px6vtiARWQEbA8W/fCZcwJJQ/029JKff7+sQ6QgmeJ3o2b42WeuO2ud0VPlEpWEYHijIIBeEJ+FO44P9GgzZ318W4WBI9X9FEo+vsnYZarLgeb64jfJagfFlQL9wI8pjitNT5dPDNtyxWLI7sPuxd1F5IZQsEuyY/jbtrtI3O+yQY8/P3HOcrRXFcya/MWbH2q1d6FgtYwYSRXryg8wBjm/DHY1eOIlzNMrClnc7c0qMOvm4m6YsbfpQXnRUq6gxmozvszdoFY6TxxKS4E4QuoO7cwi5W4Eq+dLHxrdX+3dZNRXDCXbK6nFR9VFiZYEBIx1sodgjOJe/WhfsEpi0/PoxzSEhEZCQr+NfMgf/sxtLTLdxwstuj9OE+G0sXVQt02obKzzgjJUdNI/c8XZZyVb/s2DcaWk7jOa1fz6t9rxMVV+pTASA51cOnoZKUzabTzweAERNjqyjVQ0Iyyx8hnNtTGOMAqXceY+vzZso29I5aXMyFtLpn9LPKz++U5dHttgm4AsL0LHtyxRFB0/RETWCDRRDrLCEvW1Lh6xAuPkZ8uEsIqdPBB5h11at2gkeGjZ2TyfYz369FfuSGN/EFkALLSd+2LyvAdnXfBxmpalESNWycuIorO/RtZHIPdp6zl7YRshRenlWnNADhF1QBoiGgC8GfPujJVACQ01WjVs=
+  run: "rake db:migrate"
+  app: task-dashboard
+  on:
+    repo: kekekevin/task-dashboard
