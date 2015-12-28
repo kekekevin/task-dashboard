@@ -16,5 +16,9 @@ class Board < ActiveRecord::Base
     lane ||= swim_lanes.by_days.last
     lane.tasks << task
   end
+
+  def update_tasks
+    swim_lanes.map(&:tasks).flatten.map { |t| assign(t) }
+  end
   
 end

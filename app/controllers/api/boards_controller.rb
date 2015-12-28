@@ -2,6 +2,7 @@ class Api::BoardsController < ApplicationController
 
   def index
     @boards = Board.all
+    @boards.each { |b| b.update_tasks } # this should go somewhere else...
 
     render json: @boards
   end

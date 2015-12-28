@@ -35,11 +35,11 @@ RSpec.describe Board, type: :model do
   end
 
   describe '#assign' do
-    let(:today) { SwimLane.new(days: 1) }
+    let(:today) { SwimLane.new(days: 0) }
 
-    let(:tomorrow) { SwimLane.new(days: 2) }
+    let(:tomorrow) { SwimLane.new(days: 1) }
 
-    let(:one_week) { SwimLane.new(days: 7) }
+    let(:one_week) { SwimLane.new(days: 6) }
 
     let(:board) { Board.create(swim_lanes: [tomorrow, today, one_week]) }
 
@@ -52,7 +52,7 @@ RSpec.describe Board, type: :model do
     end
 
     context "with a task with due date of tomorrow" do
-      let(:task) { Task.create(board: board, due_date: Time.now.to_date + 2.days) }
+      let(:task) { Task.create(board: board, due_date: Time.now.to_date + 1.days) }
 
       it "should get assigned the swim lane tomorrow" do
         expect { board.assign task }.to change { tomorrow.tasks.size }.by 1
@@ -74,6 +74,17 @@ RSpec.describe Board, type: :model do
         expect { board.assign task }.to change { one_week.tasks.size }.by 1
       end
     end
-    
+  end
+  
+  describe '#update_tasks' do
+    let(:today) { SwimLane.create(days: 0, tasks: [Task.new(due_date: Time.now.to_date + 2.day)]) }
+
+    let(:one_week) { SwimLane.create(days: 6) }
+
+    let(:board) { Board.create(swim_lanes: [today, one_week]) }
+
+    it "should reassign tasks exceeding their date" do
+      expect { board.update_tasks }.to change { one_week.tasks.reload.size }.by 1
+    end
   end
 end
