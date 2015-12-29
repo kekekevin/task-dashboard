@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount_ember_app :frontend, to: "/"
+
   root 'application#index'
 
   get 'welcome' => 'welcome#index'
